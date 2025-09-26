@@ -10,12 +10,32 @@ class ContactController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-    {
-        $contacts=auth()->user()->contacts;
-        
-        return view('contacts.index', compact('contacts'));
+    public function index(Request $request)
+{
+    // 1. Inicia a consulta (query) pegando apenas os contatos do usuário logado.
+    $query = auth()->user()->contacts(); // Retorna o Query Builder
+
+    // 2. VERIFICAÇÃO E FILTRAGEM:
+    // Este bloco 'if' só é executado SE o campo 'search' estiver preenchido.
+    if ($request->filled('search')) {
+        $searchTerm = $request->input('search');
+
+        // Adiciona a condição de filtro (WHERE)
+        $query->where(function ($q) use ($searchTerm) {
+            $q->where('name', 'like', '%' . $searchTerm . '%')
+              ->orWhere('email', 'like', '%' . $searchTerm . '%');
+        });
     }
+    // SE NÃO HOUVER BUSCA, o objeto $query continua inalterado,
+    // apenas com a condição inicial de "pertencer ao usuário logado".
+
+    // 3. Executa a consulta.
+    // Se o 'if' foi executado, ele pega os contatos filtrados.
+    // Se o 'if' FOI IGNORADO, ele pega TODOS os contatos.
+    $contacts = $query->get();
+
+    return view('contacts.index', compact('contacts'));
+}
 
     /**
      * Show the form for creating a new resource.
@@ -39,7 +59,7 @@ class ContactController extends Controller
     
         $request->user()->contacts()->create($contatos);
     
-        return redirect(route('contacts.index'));
+        return redirect(route('contacts.index'))->with('status', 'Contato adicionado com sucesso!');
         
     }
 
@@ -73,7 +93,7 @@ class ContactController extends Controller
 
         $contact->update($contatos);
 
-        return redirect(route('contacts.index'));
+        return redirect(route('contacts.index'))->with('status', 'Contato atualizado com sucesso!');
     }
 
     /**
@@ -82,7 +102,7 @@ class ContactController extends Controller
     public function destroy(Contact $contact)
     {
         $contact->delete();
-        return redirect(route('contacts.index'));
+        return redirect(route('contacts.index'))->with('status', 'Contato excluído com sucesso!');
         
     }
 }

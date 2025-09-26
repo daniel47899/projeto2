@@ -32,5 +32,12 @@
                 {{ $slot }}
             </main>
         </div>
+            <footer class="bg-gray-900 dark:bg-gray-950 border-t border-gray-700 dark:border-gray-800">
+            <div 
+            class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8 text-center text-sm text-gray-400">
+            &copy; {{ date('Y') }} Agenda de Contatos.
+            </div>
+        </footer>
+        
     </body>
 </html>
