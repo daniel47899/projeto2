@@ -55,8 +55,9 @@
                                             <td class="px-6 py-4">{{ $contact->phone }}</td>
                                             <td class="px-6 py-4">{{ $contact->email }}</td>
                                             <td class="px-6 py-4 flex items-center space-x-4">
-                                                <a href="{{ route('contacts.edit', $contact) }}" class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 dark:hover:text-indigo-200">
-                                                    Editar
+                                                <a href="{{ route('contacts.edit', $contact) }}" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-2.5 py-2.5 me-1 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"> <path stroke-linecap="round"stroke-linejoin="round"d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652l-1.688 1.687M16.862 4.487L7.5 13.85V17h3.15l9.363-9.363m-3.151-3.15L19.5 7.5" />
+                                                    </svg>
                                                 </a>
                                                 
                                                 <form method="POST" action="{{ route('contacts.destroy', $contact) }}">
@@ -65,9 +66,9 @@
                                                     <button 
                                                         type="submit" 
                                                         onclick="return confirm('Tem certeza que deseja excluir este contato?')"
-                                                        class="text-red-600 hover:text-red-900 dark:text-red-400 dark:hover:text-red-200"
-                                                    >
-                                                        Excluir
+                                                        class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-2.5 py-2.5 me-1 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">
+                                                    <svg xmlns="http://www.w3.org/2000/svg"  fill="none" viewBox="0 0 24 24" stroke-width="1.5"stroke="currentColor" class="w-5 h-5"> <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /> 
+                                                    </svg>
                                                     </button>
                                                 </form>
                                             </td>
