@@ -12,26 +12,22 @@ class ContactController extends Controller
      */
     public function index(Request $request)
 {
-    // 1. Inicia a consulta (query) pegando apenas os contatos do usuário logado.
-    $query = auth()->user()->contacts(); // Retorna o Query Builder
+    
+    $query = auth()->user()->contacts(); 
+    
 
-    // 2. VERIFICAÇÃO E FILTRAGEM:
-    // Este bloco 'if' só é executado SE o campo 'search' estiver preenchido.
+    
     if ($request->filled('search')) {
         $searchTerm = $request->input('search');
 
-        // Adiciona a condição de filtro (WHERE)
+        
         $query->where(function ($q) use ($searchTerm) {
             $q->where('name', 'like', '%' . $searchTerm . '%')
               ->orWhere('email', 'like', '%' . $searchTerm . '%');
         });
     }
-    // SE NÃO HOUVER BUSCA, o objeto $query continua inalterado,
-    // apenas com a condição inicial de "pertencer ao usuário logado".
-
-    // 3. Executa a consulta.
-    // Se o 'if' foi executado, ele pega os contatos filtrados.
-    // Se o 'if' FOI IGNORADO, ele pega TODOS os contatos.
+    
+    
     $contacts = $query->get();
 
     return view('contacts.index', compact('contacts'));

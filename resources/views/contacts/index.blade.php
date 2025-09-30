@@ -37,7 +37,7 @@
                                         <th scope="col" class="px-6 py-3">Nome</th>
                                         <th scope="col" class="px-6 py-3">Telefone</th>
                                         <th scope="col" class="px-6 py-3">E-mail</th>
-                                        <th scope="col" class="px-6 py-3">Endereço</th> {{-- <-- COLUNA ADICIONADA --}}
+                                        <th scope="col" class="px-6 py-3">Endereço</th> 
                                         <th scope="col" class="px-6 py-3">Ações</th>
                                     </tr>
                                 </thead>
@@ -47,7 +47,7 @@
                                             <td class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">{{ $contact->name }}</td>
                                             <td class="px-6 py-4">{{ $contact->phone }}</td>
                                             <td class="px-6 py-4">{{ $contact->email }}</td>
-                                            <td class="px-6 py-4">{{ $contact->endereco ?? 'N/A' }}</td> {{-- <-- COLUNA ADICIONADA COM SEGURANÇA --}}
+                                            <td class="px-6 py-4">{{ $contact->endereco ?? 'N/A' }}</td> 
                                             <td class="px-6 py-4 flex items-center space-x-4">
                                                 <a href="{{ route('contacts.edit', $contact) }}" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-2.5 py-2.5 me-1 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5"> <path stroke-linecap="round"stroke-linejoin="round"d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652l-1.688 1.687M16.862 4.487L7.5 13.85V17h3.15l9.363-9.363m-3.151-3.15L19.5 7.5" />
