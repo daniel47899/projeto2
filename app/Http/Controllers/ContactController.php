@@ -52,7 +52,7 @@ class ContactController extends Controller
     {
         $contatos = $request->validate([
             'name' => 'required|string|max:255',
-            'phone' => 'required|numeric|max:12',
+            'phone' => 'required|digits_between:9,13',
             'email' => 'required|email|max:255',
             'endereco' => 'nullable|string|max:255',
         ]);
@@ -86,7 +86,7 @@ class ContactController extends Controller
     {
         $contatos = $request->validate([
             'name' => 'required|string|max:255',
-            'phone' => 'required|numeric|max:12',
+            'phone' => 'required|digits_between:9,13',
             'email' => 'required|email|max:255',
             'endereco' => 'nullable|string|max:255',
             
